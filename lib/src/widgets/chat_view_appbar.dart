@@ -141,18 +141,15 @@ class ChatViewAppBar extends StatelessWidget {
               child: Row(
                 children: [
                   if (profilePicture != null)
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: ProfileImageWidget(
-                        imageUrl: profilePicture,
-                        circleRadius: circleRadius,
-                        defaultAvatarImage: defaultAvatarImage,
-                        assetImageErrorBuilder: assetImageErrorBuilder,
-                        networkImageErrorBuilder: networkImageErrorBuilder,
-                        imageType: imageType,
-                        networkImageProgressIndicatorBuilder:
-                            networkImageProgressIndicatorBuilder,
-                      ),
+                    ProfileImageWidget(
+                      imageUrl: profilePicture,
+                      circleRadius: circleRadius,
+                      defaultAvatarImage: defaultAvatarImage,
+                      assetImageErrorBuilder: assetImageErrorBuilder,
+                      networkImageErrorBuilder: networkImageErrorBuilder,
+                      imageType: imageType,
+                      networkImageProgressIndicatorBuilder:
+                          networkImageProgressIndicatorBuilder,
                     ),
                   if (profilePicture != null) const SizedBox(width: 14),
                   Column(
