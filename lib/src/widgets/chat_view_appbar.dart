@@ -33,8 +33,10 @@ class ChatViewAppBar extends StatelessWidget {
     Key? key,
     required this.chatTitle,
     this.backGroundColor,
+    this.height,
     this.userStatus,
     this.profilePicture,
+    this.circleRadius,
     this.chatTitleTextStyle,
     this.userStatusTextStyle,
     this.backArrowColor,
@@ -62,6 +64,10 @@ class ChatViewAppBar extends StatelessWidget {
 
   /// Allow user to change profile picture in appbar.
   final String? profilePicture;
+  final double? height;
+
+  /// Allow user to change profile picture Size in appbar.
+  final double? circleRadius;
 
   /// Allow user to change text style of chat title.
   final TextStyle? chatTitleTextStyle;
@@ -116,6 +122,7 @@ class ChatViewAppBar extends StatelessWidget {
               top: MediaQuery.of(context).padding.top,
               bottom: 4,
             ),
+        height: height,
         color: backGroundColor ?? Colors.white,
         child: Row(
           children: [
@@ -138,6 +145,7 @@ class ChatViewAppBar extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 8.0),
                       child: ProfileImageWidget(
                         imageUrl: profilePicture,
+                        circleRadius: circleRadius,
                         defaultAvatarImage: defaultAvatarImage,
                         assetImageErrorBuilder: assetImageErrorBuilder,
                         networkImageErrorBuilder: networkImageErrorBuilder,
@@ -146,8 +154,10 @@ class ChatViewAppBar extends StatelessWidget {
                             networkImageProgressIndicatorBuilder,
                       ),
                     ),
+                  if (profilePicture != null) const SizedBox(width: 14),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         chatTitle,

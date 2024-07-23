@@ -111,6 +111,8 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
         appBar: ChatViewAppBar(
           elevation: theme.elevation,
+          height: 120,
+          circleRadius: 40,
           backGroundColor: theme.appBarColor,
           profilePicture: Data.profileImage,
           backArrowColor: theme.backArrowColor,
