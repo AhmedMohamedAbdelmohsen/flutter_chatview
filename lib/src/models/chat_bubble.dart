@@ -32,6 +32,8 @@ class ChatBubble {
   /// Used for giving text style of chat bubble.
   final TextStyle? textStyle;
 
+  final TextStyle? textTimeStyle;
+
   /// Used for giving padding of chat bubble.
   final EdgeInsetsGeometry? padding;
 
@@ -56,6 +58,7 @@ class ChatBubble {
     this.color,
     this.borderRadius,
     this.textStyle,
+    this.textTimeStyle,
     this.padding,
     this.margin,
     this.linkPreviewConfig,

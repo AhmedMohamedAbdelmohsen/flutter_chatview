@@ -201,15 +201,19 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
         chatBubbleConfig: ChatBubbleConfiguration(
           outgoingChatBubbleConfig: ChatBubble(
-            linkPreviewConfig: LinkPreviewConfiguration(
-              backgroundColor: theme.linkPreviewOutgoingChatColor,
-              bodyStyle: theme.outgoingChatLinkBodyStyle,
-              titleStyle: theme.outgoingChatLinkTitleStyle,
-            ),
-            receiptsWidgetConfig:
-                const ReceiptsWidgetConfig(showReceiptsIn: ShowReceiptsIn.all),
-            color: theme.outgoingChatBubbleColor,
-          ),
+              linkPreviewConfig: LinkPreviewConfiguration(
+                backgroundColor: theme.linkPreviewOutgoingChatColor,
+                bodyStyle: theme.outgoingChatLinkBodyStyle,
+                titleStyle: theme.outgoingChatLinkTitleStyle,
+              ),
+              receiptsWidgetConfig: const ReceiptsWidgetConfig(
+                  showReceiptsIn: ShowReceiptsIn.all),
+              color: theme.outgoingChatBubbleColor,
+              borderRadius: const BorderRadiusDirectional.only(
+                  bottomStart: Radius.circular(10),
+                  bottomEnd: Radius.circular(2),
+                  topEnd: Radius.circular(10),
+                  topStart: Radius.circular(10))),
           inComingChatBubbleConfig: ChatBubble(
             linkPreviewConfig: LinkPreviewConfiguration(
               linkStyle: TextStyle(
@@ -228,6 +232,11 @@ class _ChatScreenState extends State<ChatScreen> {
             senderNameTextStyle:
                 TextStyle(color: theme.inComingChatBubbleTextColor),
             color: theme.inComingChatBubbleColor,
+            borderRadius: const BorderRadiusDirectional.only(
+                bottomStart: Radius.circular(2),
+                bottomEnd: Radius.circular(10),
+                topEnd: Radius.circular(10),
+                topStart: Radius.circular(10)),
           ),
         ),
         replyPopupConfig: ReplyPopupConfiguration(

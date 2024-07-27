@@ -131,6 +131,7 @@ class _MessageViewState extends State<MessageView>
 
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
       onLongPressStart: isLongPressEnable ? _onLongPressStart : null,
       onDoubleTap: () {
@@ -155,6 +156,7 @@ class _MessageViewState extends State<MessageView>
   }
 
   Widget get _messageView {
+    final textTheme = Theme.of(context).textTheme;
     final message = widget.message.message;
     final emojiMessageConfiguration = messageConfig?.emojiMessageConfig;
     return Padding(
@@ -183,10 +185,27 @@ class _MessageViewState extends State<MessageView>
                           scale: widget.shouldHighlight
                               ? widget.highlightScale
                               : 1.0,
-                          child: Text(
-                            message,
-                            style: emojiMessageConfiguration?.textStyle ??
-                                const TextStyle(fontSize: 30),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                message,
+                                style: emojiMessageConfiguration?.textStyle ??
+                                    const TextStyle(fontSize: 30),
+                              ),
+                              Text(
+                                widget.message.createdAt.getTimeFromDateTime
+                                    .toString(),
+                                textAlign: widget.isMessageBySender
+                                    ? TextAlign.end
+                                    : TextAlign.start,
+                                style: _textTimeStyle ??
+                                    textTheme.bodyMedium!.copyWith(
+                                      color: Colors.grey,
+                                      fontSize: 14,
+                                    ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -205,6 +224,8 @@ class _MessageViewState extends State<MessageView>
                     isMessageBySender: widget.isMessageBySender,
                     imageMessageConfig: messageConfig?.imageMessageConfig,
                     messageReactionConfig: messageConfig?.messageReactionConfig,
+                    inComingChatBubbleConfig: widget.inComingChatBubbleConfig,
+                    outgoingChatBubbleConfig: widget.outgoingChatBubbleConfig,
                     highlightImage: widget.shouldHighlight,
                     highlightScale: widget.highlightScale,
                   );
@@ -279,4 +300,8 @@ class _MessageViewState extends State<MessageView>
     _animationController?.dispose();
     super.dispose();
   }
+
+  TextStyle? get _textTimeStyle => widget.isMessageBySender
+      ? widget.outgoingChatBubbleConfig?.textTimeStyle
+      : widget.inComingChatBubbleConfig?.textTimeStyle;
 }
