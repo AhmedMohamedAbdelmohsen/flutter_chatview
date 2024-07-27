@@ -173,9 +173,12 @@ class _ChatScreenState extends State<ChatScreen> {
           defaultSendButtonColor: theme.sendButtonColor,
           replyDialogColor: theme.replyDialogColor,
           replyTitleColor: theme.replyTitleColor,
-          textFieldBackgroundColor: theme.textFieldBackgroundColor,
+          textFieldBackgroundColor: Color(0xffF8F4F5),
+          mainBackgroundColor: Colors.white,
+          mainHeight: 75,
           closeIconColor: theme.closeIconColor,
           textFieldConfig: TextFieldConfiguration(
+            margin: const EdgeInsets.symmetric(vertical: 6),
             onMessageTyping: (status) {
               /// Do with status
               debugPrint(status.toString());
@@ -186,7 +189,9 @@ class _ChatScreenState extends State<ChatScreen> {
           micIconColor: theme.replyMicIconColor,
           voiceRecordingConfiguration: VoiceRecordingConfiguration(
             backgroundColor: theme.waveformBackgroundColor,
-            recorderIconColor: theme.recordIconColor,
+            recorderHeight: 48,
+            recorderIconSize: 24,
+            recorderIconColor: Colors.white,
             waveStyle: WaveStyle(
               showMiddleLine: false,
               waveColor: theme.waveColor ?? Colors.white,

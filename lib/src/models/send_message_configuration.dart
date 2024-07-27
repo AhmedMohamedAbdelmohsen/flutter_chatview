@@ -30,6 +30,9 @@ import '../values/typedefs.dart';
 
 class SendMessageConfiguration {
   /// Used to give background color to text field.
+  final Color? mainBackgroundColor;
+  final double? mainHeight;
+
   final Color? textFieldBackgroundColor;
 
   /// Used to give color to send button.
@@ -79,6 +82,8 @@ class SendMessageConfiguration {
 
   const SendMessageConfiguration({
     this.textFieldConfig,
+    this.mainHeight,
+    this.mainBackgroundColor,
     this.textFieldBackgroundColor,
     this.imagePickerIconsConfig,
     this.imagePickerConfiguration,

@@ -45,8 +45,8 @@ const String astonishedFace = "\u{1F632}";
 const String thumbsUp = "\u{1F44D}";
 const double bottomPadding1 = 10;
 const double bottomPadding2 = 22;
-const double bottomPadding3 = 12;
-const double bottomPadding4 = 6;
+const double bottomPadding3 = 0;
+const double bottomPadding4 = 0;
 const double leftPadding = 9;
 const double maxWidth = 350;
 const int opacity = 18;
@@ -56,7 +56,7 @@ const double horizontalPadding = 6;
 const double replyBorderRadius1 = 30;
 const double replyBorderRadius2 = 18;
 const double leftPadding3 = 12;
-const double textFieldBorderRadius = 27;
+const double textFieldBorderRadius = 10;
 const String defaultChatSeparatorDatePattern = 'MMM dd, yyyy';
 
 applicationDateFormatter(DateTime inputTime) {
