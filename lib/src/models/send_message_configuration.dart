@@ -226,6 +226,7 @@ class VoiceRecordingConfiguration {
     this.recorderIconColor,
     this.recorderBackgroundColor,
     this.recorderHeight,
+    this.recorderIconSize,
     this.stopIcon,
     this.sampleRate,
     this.bitRate,
@@ -260,6 +261,7 @@ class VoiceRecordingConfiguration {
   final Color? recorderIconColor;
   final Color? recorderBackgroundColor;
   final double? recorderHeight;
+  final double? recorderIconSize;
 
   /// The sample rate for audio is measured in samples per second.
   /// A higher sample rate generates more samples per second,
