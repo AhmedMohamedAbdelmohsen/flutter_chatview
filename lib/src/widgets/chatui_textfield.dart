@@ -270,23 +270,27 @@ class _ChatUITextFieldState extends State<ChatUITextField> {
                         if ((sendMessageConfig?.allowRecordingVoice ?? false) &&
                             !kIsWeb &&
                             (Platform.isIOS || Platform.isAndroid))
-                          FloatingActionButton(
-                            onPressed: (textFieldConfig?.enabled ?? true)
-                                ? _recordOrStop
-                                : null,
-                            mini: true,
-                            backgroundColor: voiceRecordingConfig
-                                    ?.recorderBackgroundColor ??
-                                const Color(0xff2a6eed),
-                            elevation: 0,
-                            child: (isRecordingValue
-                                    ? voiceRecordingConfig?.micIcon
-                                    : voiceRecordingConfig?.stopIcon) ??
-                                Icon(
-                                  isRecordingValue ? Icons.stop : Icons.mic,
-                                  color:
-                                      voiceRecordingConfig?.recorderIconColor,
-                                ),
+                          SizedBox(
+                            height: voiceRecordingConfig?.recorderHeight ?? 30,
+                            width: voiceRecordingConfig?.recorderHeight ?? 30,
+                            child: FloatingActionButton(
+                              onPressed: (textFieldConfig?.enabled ?? true)
+                                  ? _recordOrStop
+                                  : null,
+                              mini: true,
+                              backgroundColor: voiceRecordingConfig
+                                      ?.recorderBackgroundColor ??
+                                  const Color(0xff2a6eed),
+                              elevation: 0,
+                              child: (isRecordingValue
+                                      ? voiceRecordingConfig?.micIcon
+                                      : voiceRecordingConfig?.stopIcon) ??
+                                  Icon(
+                                    isRecordingValue ? Icons.stop : Icons.mic,
+                                    color:
+                                        voiceRecordingConfig?.recorderIconColor,
+                                  ),
+                            ),
                           ),
                         // IconButton(
                         //   onPressed: (textFieldConfig?.enabled ?? true)
