@@ -107,6 +107,7 @@ class TextMessageView extends StatelessWidget {
                               fontSize: 16,
                             ),
                       ),
+                const SizedBox(height: 8),
                 Text(
                   message.createdAt.getTimeFromDateTime.toString(),
                   textAlign:

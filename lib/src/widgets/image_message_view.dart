@@ -185,5 +185,5 @@ class ImageMessageView extends StatelessWidget {
 
   TextStyle? get _textTimeStyle => isMessageBySender
       ? outgoingChatBubbleConfig?.textTimeStyle
-      : inComingChatBubbleConfig?.textTimeStyle;
+      : outgoingChatBubbleConfig?.textTimeStyle;
 }

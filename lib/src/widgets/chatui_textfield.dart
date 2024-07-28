@@ -135,7 +135,7 @@ class _ChatUITextFieldState extends State<ChatUITextField> {
     return Container(
       height: sendMessageConfig?.mainHeight ?? 75,
       padding:
-          textFieldConfig?.padding ?? const EdgeInsets.symmetric(horizontal: 6),
+          textFieldConfig?.padding ?? const EdgeInsets.symmetric(horizontal: 12),
       // margin: textFieldConfig?.margin,
       decoration: BoxDecoration(
         // borderRadius: textFieldConfig?.borderRadius ??
@@ -167,8 +167,8 @@ class _ChatUITextFieldState extends State<ChatUITextField> {
                           size: Size(
                               MediaQuery.of(context).size.width *
                                   (cancelRecordConfiguration == null
-                                      ? 0.75
-                                      : 0.65),
+                                      ? 0.70
+                                      : 0.60),
                               50),
                           recorderController: controller!,
                           margin: voiceRecordingConfig?.margin,

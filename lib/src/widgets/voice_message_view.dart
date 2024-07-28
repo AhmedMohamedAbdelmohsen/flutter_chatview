@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:chatview/chatview.dart';
+import 'package:chatview/src/extensions/extensions.dart';
 import 'package:chatview/src/models/voice_message_configuration.dart';
 import 'package:chatview/src/widgets/reaction_widget.dart';
 import 'package:flutter/foundation.dart';
@@ -81,6 +82,7 @@ class _VoiceMessageViewState extends State<VoiceMessageView> {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -99,15 +101,19 @@ class _VoiceMessageViewState extends State<VoiceMessageView> {
                 horizontal: 8,
                 vertical: widget.message.reaction.reactions.isNotEmpty ? 15 : 0,
               ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              ValueListenableBuilder<PlayerState>(
-                builder: (context, state, child) {
-                  return IconButton(
-                    onPressed: _playOrPause,
-                    icon:
-                        state.isStopped || state.isPaused || state.isInitialised
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ValueListenableBuilder<PlayerState>(
+                    builder: (context, state, child) {
+                      return IconButton(
+                        onPressed: _playOrPause,
+                        icon: state.isStopped ||
+                                state.isPaused ||
+                                state.isInitialised
                             ? widget.config?.playIcon ??
                                 const Icon(
                                   Icons.play_arrow,
@@ -118,24 +124,36 @@ class _VoiceMessageViewState extends State<VoiceMessageView> {
                                   Icons.stop,
                                   color: Colors.white,
                                 ),
-                  );
-                },
-                valueListenable: _playerState,
+                      );
+                    },
+                    valueListenable: _playerState,
+                  ),
+                  AudioFileWaveforms(
+                    size: Size(widget.screenWidth * 0.50, 60),
+                    playerController: controller,
+                    waveformType: WaveformType.fitWidth,
+                    playerWaveStyle:
+                        widget.config?.playerWaveStyle ?? playerWaveStyle,
+                    padding: widget.config?.waveformPadding ??
+                        const EdgeInsets.only(right: 10),
+                    margin: widget.config?.waveformMargin,
+                    animationCurve:
+                        widget.config?.animationCurve ?? Curves.easeIn,
+                    animationDuration: widget.config?.animationDuration ??
+                        const Duration(milliseconds: 500),
+                    enableSeekGesture: widget.config?.enableSeekGesture ?? true,
+                  ),
+                ],
               ),
-              AudioFileWaveforms(
-                size: Size(widget.screenWidth * 0.50, 60),
-                playerController: controller,
-                waveformType: WaveformType.fitWidth,
-                playerWaveStyle:
-                    widget.config?.playerWaveStyle ?? playerWaveStyle,
-                padding: widget.config?.waveformPadding ??
-                    const EdgeInsets.only(right: 10),
-                margin: widget.config?.waveformMargin,
-                animationCurve: widget.config?.animationCurve ?? Curves.easeIn,
-                animationDuration: widget.config?.animationDuration ??
-                    const Duration(milliseconds: 500),
-                enableSeekGesture: widget.config?.enableSeekGesture ?? true,
-              ),
+              const SizedBox(height: 8),
+              Text(widget.message.createdAt.getTimeFromDateTime.toString(),
+                  textAlign:
+                  widget.isMessageBySender ? TextAlign.end : TextAlign.start,
+                  style: _textTimeStyle ??
+                      textTheme.bodyMedium!.copyWith(
+                        color: Colors.grey,
+                        fontSize: 14,
+                      )),
             ],
           ),
         ),
@@ -163,4 +181,8 @@ class _VoiceMessageViewState extends State<VoiceMessageView> {
       controller.pausePlayer();
     }
   }
+
+  TextStyle? get _textTimeStyle => widget.isMessageBySender
+      ? widget.outgoingChatBubbleConfig?.textTimeStyle
+      : widget.outgoingChatBubbleConfig?.textTimeStyle;
 }
