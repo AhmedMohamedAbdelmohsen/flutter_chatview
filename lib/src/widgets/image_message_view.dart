@@ -161,9 +161,9 @@ class ImageMessageView extends StatelessWidget {
               ],
             ),
             Container(
-              margin: EdgeInsets.only(
-                right: isMessageBySender ? 12 : 0,
-                left: isMessageBySender ? 0 : 12,
+              margin: EdgeInsetsDirectional.only(
+                start: isMessageBySender ? 16 : 0,
+                end: isMessageBySender ? 0 : 16,
               ),
               child: Text(
                 message.createdAt.getTimeFromDateTime.toString(),
@@ -184,6 +184,6 @@ class ImageMessageView extends StatelessWidget {
   }
 
   TextStyle? get _textTimeStyle => isMessageBySender
-      ? outgoingChatBubbleConfig?.textTimeStyle
-      : outgoingChatBubbleConfig?.textTimeStyle;
+      ? inComingChatBubbleConfig?.textTimeStyle
+      : inComingChatBubbleConfig?.textTimeStyle;
 }
