@@ -134,8 +134,8 @@ class _ChatUITextFieldState extends State<ChatUITextField> {
     final outlineBorder = _outLineBorder;
     return Container(
       height: sendMessageConfig?.mainHeight ?? 75,
-      padding:
-          textFieldConfig?.padding ?? const EdgeInsets.symmetric(horizontal: 12),
+      padding: textFieldConfig?.padding ??
+          const EdgeInsets.symmetric(horizontal: 12),
       // margin: textFieldConfig?.margin,
       decoration: BoxDecoration(
         // borderRadius: textFieldConfig?.borderRadius ??
@@ -204,6 +204,9 @@ class _ChatUITextFieldState extends State<ChatUITextField> {
                             keyboardType: textFieldConfig?.textInputType,
                             inputFormatters: textFieldConfig?.inputFormatters,
                             onChanged: _onChanged,
+                            textAlign: textFieldConfig?.enabled == true
+                                ? TextAlign.start
+                                : TextAlign.center,
                             enabled: textFieldConfig?.enabled,
                             textCapitalization:
                                 textFieldConfig?.textCapitalization ??
