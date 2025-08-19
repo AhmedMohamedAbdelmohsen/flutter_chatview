@@ -32,7 +32,6 @@ class ChatViewAppBar extends StatelessWidget {
   const ChatViewAppBar({
     Key? key,
     required this.chatTitle,
-    required this.isCurrentLanguageEnglish,
     this.backGroundColor,
     this.height,
     this.userStatus,
@@ -59,7 +58,6 @@ class ChatViewAppBar extends StatelessWidget {
 
   /// Allow user to change title of appbar.
   final String chatTitle;
-  final bool isCurrentLanguageEnglish;
 
   /// Allow user to change whether user is available or offline.
   final String? userStatus;
@@ -133,9 +131,9 @@ class ChatViewAppBar extends StatelessWidget {
                   IconButton(
                     onPressed: onBackPress ?? () => Navigator.pop(context),
                     icon: Icon(
-                      isCurrentLanguageEnglish
+                      (!kIsWeb && Platform.isIOS)
                           ? Icons.arrow_back_ios
-                          : Icons.arrow_forward_ios,
+                          : Icons.arrow_back,
                       color: backArrowColor,
                     ),
                   ),

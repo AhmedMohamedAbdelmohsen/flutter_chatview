@@ -132,11 +132,8 @@ class _ChatBubbleWidgetState extends State<ChatBubbleWidget> {
             profileCircle(messagedUser),
           Expanded(
             child: SwipeToReply(
-              onLeftSwipe: featureActiveConfig?.enableSwipeToReply ?? true
-                  ? isMessageBySender
-                      ? onLeftSwipe
-                      : onRightSwipe
-                  : null,
+              onLeftSwipe: _getOnLeftSwipe(context),
+              onRightSwipe: _getOnRightSwipe(context),
               replyIconColor: chatListConfig.swipeToReplyConfig?.replyIconColor,
               swipeToReplyAnimationDuration:
                   chatListConfig.swipeToReplyConfig?.animationDuration,
@@ -150,6 +147,26 @@ class _ChatBubbleWidgetState extends State<ChatBubbleWidget> {
         ],
       ),
     );
+  }
+
+  VoidCallback? _getOnLeftSwipe(BuildContext context) {
+    final isRTL = Directionality.of(context) == TextDirection.rtl;
+    if (featureActiveConfig?.enableSwipeToReply ?? true) {
+      return isRTL
+          ? (isMessageBySender ? onRightSwipe : onLeftSwipe)
+          : (isMessageBySender ? onLeftSwipe : onRightSwipe);
+    }
+    return null;
+  }
+
+  VoidCallback? _getOnRightSwipe(BuildContext context) {
+    final isRTL = Directionality.of(context) == TextDirection.rtl;
+    if (featureActiveConfig?.enableSwipeToReply ?? true) {
+      return isRTL
+          ? (isMessageBySender ? onLeftSwipe : onRightSwipe)
+          : (isMessageBySender ? onRightSwipe : onLeftSwipe);
+    }
+    return null;
   }
 
   ProfileCircle profileCircle(ChatUser? messagedUser) {
